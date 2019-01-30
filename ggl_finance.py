@@ -68,8 +68,8 @@ def get_google_finance_intraday(ticker, period=60, days=1):
     else:
         return pd.DataFrame(rows, index=pd.DatetimeIndex(times, name='Date'))
     
-ntt_df=get_google_finance_intraday('9437.T',period=60*5,days=1)
-sft_df=get_google_finance_intraday('9984.T',period=60*5,days=1)
+ntt_df=get_google_finance_intraday('9437.T',period=60*5,days=2)
+sft_df=get_google_finance_intraday('9984.T',period=60*5,days=2)
 
 ntt_df=add_ret_cols(ntt_df,'close')
 sft_df=add_ret_cols(sft_df,'close')

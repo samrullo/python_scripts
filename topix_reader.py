@@ -51,7 +51,7 @@ def get_px_series(px_rows):
                 arr[0]=arr[0].replace('年','-')
                 arr[0]=arr[0].replace('月','-')
                 arr[0]=arr[0].replace('日','')
-            df=pd.DataFrame(index=[arr[0]],data=[arr[1:]],columns=['close','high','low','open'])
+            df=pd.DataFrame(index=[arr[0]],data=[arr[1:5]],columns=['open','high','low','close'])
             px_df=pd.concat([px_df,df])
     return px_df
 
@@ -77,6 +77,7 @@ def getYahooSeries(ticker,start=date(2017,12,31),end=datetime.today(),inv_amt=10
     page=1
     while(hasPX):
         url=url_template.format(ticker=ticker,start_year=start.year,start_month=start.month,start_day=start.day,end_year=end.year,end_month=end.month,end_day=end.day,page_numb=str(page))
+        print(url)
         page+=1
         parsed=parse(urlopen(url))
         doc=parsed.getroot()    
@@ -130,8 +131,8 @@ def join_two_df(df1,df2,suffixes=('_usdjpy','_tpx')):
     return df_merged
 
 main_folder='C:\\Users\\amrul\\Documents\\investment_analysis\\'
-start=date(1900,1,1)
-end=date(2018,7,13)
+start=date(2018,3,31)
+end=date(2018,11,24)
 #ticker='USDJPY%3DX'
 #file=ticker+'_'+start.isoformat()+'_to_'+end.isoformat()+'.xlsx'
 #cols=['date','close','high','low','open','daily_ret']
@@ -140,11 +141,11 @@ end=date(2018,7,13)
 
 #usdjpy_df=getYahooSeries('USDJPY%3DX',start=start,end=end)
 #eurjpy_df=getYahooSeries('EURJPY%3DX',start=start,end=end)
-#tpx_df=getYahooSeries('998405.T',start=start,end=end)
+softbank_df=getYahooSeries('9984.T',start=start,end=end)
 #df.to_excel(main_folder+file)
-fx_all_df,usdjpy_df,eurusd_df,gbpusd_df,usdcad_df=load_fx_from_file()
-tpx_df=load_tpx_from_file()
-usdjpy_tpx_mrg_df=join_two_df(usdjpy_df,tpx_df,suffixes=('_usdjpy','_tpx'))
+#fx_all_df,usdjpy_df,eurusd_df,gbpusd_df,usdcad_df=load_fx_from_file()
+#tpx_df=load_tpx_from_file()
+#usdjpy_tpx_mrg_df=join_two_df(usdjpy_df,tpx_df,suffixes=('_usdjpy','_tpx'))
 
 
 #----------------------------------------------------------------------------

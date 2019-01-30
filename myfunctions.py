@@ -14,4 +14,5 @@ def add_ret_cols(df,col):
     df['dly_ret']=df[col].pct_change()
     df['dly_ret_bps']=df['dly_ret']*10000
     df['comp_ret']=np.cumprod(1+df['dly_ret'])
+    df['up']=df['dly_ret_bps'].map(lambda x: x>0)
     return df

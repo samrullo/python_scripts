@@ -12,7 +12,6 @@ def command_00(txt):
     print('The text is:%s'%(txt))
     pass
 
-
 root=Tk()
 label=Label(root,text='Date')
 entry=Entry(root,width=50)
